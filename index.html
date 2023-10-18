@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+</head>
+
+<style>
+
+</style>
+<body bgcolor="pink">
+    <script>
+        var tableData = []; // Array para almacenar los datos
+
+
+
+        function agregarFila() {
+            // Solicita los datos al usuario
+            var name = prompt("Ingrese su nombre");
+            var dept = prompt("Ingrese su departamento");
+            var sueldoD = prompt("Ingrese su sueldo");
+            var antiguedad = prompt("Ingrese su antigüedad");
+            var diasT = prompt("Ingrese sus días trabajados");
+
+            // Calcula los valores necesarios (por ejemplo, sub, bono, total)
+            var sub = sueldoD * diasT;
+
+            var bono;
+            if (antiguedad >= 15) {
+                bono = sub * 0.30;
+            } else {
+                bono = sub * 0.15;
+            }
+
+            var total = sub + bono;
+
+            // Agregar los datos a la tablaData
+            tableData.push([name, dept, sueldoD, antiguedad, diasT, sub, bono, total]);
+
+            // Actualizar la tabla en el documento
+            actualizarTabla();
+        }
+
+        function actualizarTabla() {
+            var tabla = "<table border='2'>" +
+                "<tr>  <td > NOMBRE</td>  <td> DEPTO</td>  <td>SUELDO DIARIO</td> <td> ANTIGUEDAD</td> <td>DIAS TRABAJADOS</td> <td>SUBTOTAL</td> <td>BONO</td> <td>TOTAL</td>   </tr>";
+
+            for (var i = 0; i < tableData.length; i++) {
+                tabla += "<tr>";
+                for (var j = 0; j < tableData[i].length; j++) {
+                    tabla += "<td>" + tableData[i][j] + "</td>";
+                }
+                tabla += "</tr>";
+            }
+
+            tabla += "</table>";
+
+            // Mostrar la tabla en el documento
+            document.getElementById("tabla").innerHTML = tabla;
+        }
+    </script>
+
+   <center> <button onclick="agregarFila()"  style="width: 200px; background-position-x: 120px;">Agrega un registro</button>
+  
+
+    <div id="tabla"></div>
+</center>
+</body>
+</html>
